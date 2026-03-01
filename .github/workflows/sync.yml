@@ -1,0 +1,45 @@
+name: Sync HPL Data
+
+on:
+  schedule:
+    # Runs every 3 hours
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+    # Also allows manual trigger from GitHub Actions tab
+    inputs:
+      force:
+        description: "Force fetch even if no games today"
+        required: false
+        default: "false"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run sync script
+        run: |
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            python fetch_hpl_data.py --force
+          else
+            python fetch_hpl_data.py
+          fi
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/hpl_data.json
+          # Only commit if something actually changed
+          git diff --staged --quiet || git commit -m "Auto-sync GW data [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+          git push
