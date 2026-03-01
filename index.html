@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HPL Spring Cup</title>
+  <style>
+    :root {
+      --bg:       #0d1117;
+      --surface:  #161b27;
+      --surface2: #1e2535;
+      --border:   #2a3347;
+      --accent:   #7c6af7;
+      --green:    #22c55e;
+      --amber:    #f59e0b;
+      --red:      #ef4444;
+      --text:     #e2e8f0;
+      --muted:    #8b9ab5;
+      --live:     #f59e0b;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      font-size: 14px;
+    }
+
+    /* ── Header ────────────────────────────────────────────────────────── */
+    header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .header-left h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .header-left p {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    #status-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(245,158,11,0.15);
+      color: var(--amber);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 99px;
+      padding: 2px 8px;
+      font-weight: 600;
+      font-size: 0.7rem;
+    }
+    .live-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    /* ── Scoring note ───────────────────────────────────────────────────── */
+    .scoring-note {
+      margin: 0 24px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: rgba(124,106,247,0.08);
+      border: 1px solid rgba(124,106,247,0.2);
+      color: var(--muted);
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .scoring-note strong { color: var(--accent); }
+
+    /* ── Main layout ────────────────────────────────────────────────────── */
+    main { padding: 24px; max-width: 1440px; margin: 0 auto; }
+
+    section { margin-bottom: 40px; }
+    .section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── R1 table ───────────────────────────────────────────────────────── */
+    .r1-table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    th {
+      text-align: left;
+      padding: 7px 10px;
+      color: var(--muted);
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 7px 10px;
+      border-bottom: 1px solid rgba(42,51,71,0.5);
+      white-space: nowrap;
+    }
+    tr:hover td { background: var(--surface); }
+    .cell-num { font-variant-numeric: tabular-nums; }
+    .cell-agg { font-weight: 700; }
+    .cell-win { color: var(--green); font-weight: 600; }
+    .cell-dim { color: var(--muted); }
+    .badge-seed {
+      font-size: 0.6rem;
+      font-weight: 700;
+      background: rgba(124,106,247,0.2);
+      color: var(--accent);
+      border-radius: 3px;
+      padding: 1px 4px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+
+    /* ── Bracket ────────────────────────────────────────────────────────── */
+    .bracket-scroll { overflow-x: auto; padding-bottom: 8px; }
+
+    .bracket {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      min-width: 860px;
+    }
+
+    /* Each round column */
+    .round-col {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 200px;
+    }
+    .round-col + .round-col { border-left: 1px solid var(--border); }
+
+    .round-header {
+      text-align: center;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .round-header .rh-name {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+    }
+    .round-header .rh-gw {
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 2px;
+      opacity: 0.7;
+    }
+
+    /* Matches list inside a column */
+    .round-matches {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      flex: 1;
+      padding: 8px;
+      gap: 8px;
+    }
+
+    /* Individual match card */
+    .match-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .match-card.is-live { border-color: var(--amber); }
+    .match-card.is-tbd {
+      border-style: dashed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 66px;
+      padding: 12px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .match-team {
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      min-height: 33px;
+    }
+    .match-team + .match-team { border-top: 1px solid var(--border); }
+
+    .match-team.t-winner { background: rgba(34,197,94,0.08); }
+    .match-team.t-loser  { opacity: 0.45; }
+
+    .mt-seed {
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(124,106,247,0.15);
+      border-radius: 3px;
+      padding: 1px 4px;
+      line-height: 1.3;
+    }
+    .mt-name {
+      font-weight: 500;
+      font-size: 0.78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .mt-winner .mt-name { font-weight: 700; }
+    .mt-legs {
+      font-size: 0.65rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      text-align: right;
+    }
+    .mt-agg {
+      font-size: 0.85rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      min-width: 26px;
+      text-align: right;
+    }
+    .mt-winner .mt-agg { color: var(--green); }
+
+    /* ── Error / empty ──────────────────────────────────────────────────── */
+    .alert {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      margin-bottom: 16px;
+    }
+    .alert-warn {
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.3);
+      color: var(--amber);
+    }
+    .alert code {
+      background: rgba(255,255,255,0.08);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>&#127942; HPL Spring Cup</h1>
+    <p>FPL Mini-League #32567 &middot; 24 Teams &middot; 16-team knockout</p>
+  </div>
+  <div id="status-bar">
+    <span id="live-pill" style="display:none" class="live-pill">
+      <span class="live-dot"></span> LIVE
+    </span>
+    <span id="updated-label">Loading&hellip;</span>
+  </div>
+</header>
+
+<div class="scoring-note" style="margin-top:12px">
+  &#9432;&nbsp; Scoring: <strong id="scoring-label">gross points</strong>
+  &mdash; tiebreaker on aggregate uses HPL league standing at end of the second leg&rsquo;s GW.
+</div>
+
+<main>
+
+  <!-- Round 1 -->
+  <section>
+    <div class="section-title">Round 1 Results &mdash; GW26 + GW27</div>
+    <div class="r1-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Team A</th>
+            <th style="text-align:right">GW26</th>
+            <th style="text-align:right">GW27</th>
+            <th style="text-align:right">Agg</th>
+            <th style="text-align:center">&nbsp;</th>
+            <th>Team B</th>
+            <th style="text-align:right">GW26</th>
+            <th style="text-align:right">GW27</th>
+            <th style="text-align:right">Agg</th>
+            <th>Winner</th>
+          </tr>
+        </thead>
+        <tbody id="r1-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Main bracket -->
+  <section>
+    <div class="section-title">Spring Cup Bracket</div>
+    <div id="data-alert"></div>
+    <div class="bracket-scroll">
+      <div class="bracket" id="bracket"></div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// CONFIG
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Change to "net" if the league confirms transfer hits are deducted
+const SCORING = "gross";
+
+const SEEDS = [
+  { seed: 1, name: "Maguerrrrrrrroooo", entry: 224773  },
+  { seed: 2, name: "The Wirtz",         entry: 5711505 },
+  { seed: 3, name: "Gyok Tuah",         entry: 4350665 },
+  { seed: 4, name: "El Bee FC",         entry: 176770  },
+  { seed: 5, name: "BASTOURS",          entry: 3043654 },
+  { seed: 6, name: "TopGunners",        entry: 1284138 },
+  { seed: 7, name: "Dele Lalli",        entry: 2495071 },
+  { seed: 8, name: "The Blues",         entry: 176123  },
+];
+
+// Round 1 – hardcoded results (GW26 + GW27, gross)
+const R1 = [
+  { a: "Saratoga Stallions", l1a: 64,  l2a: 36, b: "Palm Tree",           l1b: 52, l2b: 64, winner: "Palm Tree"       },
+  { a: "Szaf Bet",           l1a: 49,  l2a: 58, b: "Slot in the Dark",    l1b: 46, l2b: 40, winner: "Szaf Bet"        },
+  { a: "HogWirtz",           l1a: 74,  l2a: 46, b: "FC Perroncel",        l1b: 82, l2b: 43, winner: "FC Perroncel"    },
+  { a: "South Shore SC",     l1a: 70,  l2a: 45, b: "Return of the Djedi", l1b: 65, l2b: 42, winner: "South Shore SC"  },
+  { a: "Ryan's Reds",        l1a: 57,  l2a: 41, b: "Guiu Pride",          l1b: 69, l2b: 45, winner: "Guiu Pride"      },
+  { a: "NCCC all stars",     l1a: 43,  l2a: 40, b: "Grand Case FC",       l1b: 54, l2b: 49, winner: "Grand Case FC"   },
+  { a: "Raymond Gapist FC",  l1a: 49,  l2a: 38, b: "Mainstreeters",       l1b: 66, l2b: 38, winner: "Mainstreeters"   },
+  { a: "FullKitWnkr",        l1a: 105, l2a: 42, b: "WeHa FC",             l1b: 59, l2b: 40, winner: "FullKitWnkr"    },
+];
+
+// Round 2 matchups (in bracket order)
+// Pairing: matches 0+1 → QF-A, 2+3 → QF-B, 4+5 → QF-C, 6+7 → QF-D
+const R2 = [
+  { seed: 1, seedEntry: 224773,  seedName: "Maguerrrrrrrroooo", oppName: "Palm Tree"      },
+  { seed: 8, seedEntry: 176123,  seedName: "The Blues",         oppName: "Szaf Bet"       },
+  { seed: 4, seedEntry: 176770,  seedName: "El Bee FC",         oppName: "FC Perroncel"   },
+  { seed: 5, seedEntry: 3043654, seedName: "BASTOURS",          oppName: "South Shore SC" },
+  { seed: 2, seedEntry: 5711505, seedName: "The Wirtz",         oppName: "Guiu Pride"     },
+  { seed: 7, seedEntry: 2495071, seedName: "Dele Lalli",        oppName: "Grand Case FC"  },
+  { seed: 3, seedEntry: 4350665, seedName: "Gyok Tuah",         oppName: "Mainstreeters"  },
+  { seed: 6, seedEntry: 1284138, seedName: "TopGunners",        oppName: "FullKitWnkr"   },
+];
+
+const R2_GWS = [28, 29];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+function pts(histories, entryId, gw) {
+  if (entryId == null) return null;
+  const h = histories[String(entryId)];
+  if (!h) return null;
+  const g = h[String(gw)];
+  if (!g) return null;
+  return SCORING === "net" ? g.net : g.gross;
+}
+
+function leagueRank(entries, entryId) {
+  const e = entries.find(x => x.entry === entryId);
+  return e ? e.rank : null;
+}
+
+function entryByName(entries, name) {
+  return (entries.find(e => e.entry_name === name) || {}).entry ?? null;
+}
+
+function seedOf(entryId) {
+  return SEEDS.find(s => s.entry === entryId) ?? null;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RENDER – Round 1 table
+// ─────────────────────────────────────────────────────────────────────────────
+
+function renderR1() {
+  const tbody = document.getElementById("r1-body");
+  R1.forEach((m, i) => {
+    const aggA = m.l1a + m.l2a;
+    const aggB = m.l1b + m.l2b;
+    const winA = m.winner === m.a;
+    const winB = m.winner === m.b;
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="cell-dim">${i + 1}</td>
+      <td class="${winA ? 'cell-win' : ''}">${m.a}</td>
+      <td class="cell-num" style="text-align:right">${m.l1a}</td>
+      <td class="cell-num" style="text-align:right">${m.l2a}</td>
+      <td class="cell-num cell-agg" style="text-align:right">${aggA}</td>
+      <td style="text-align:center;color:var(--muted);font-size:0.7rem">vs</td>
+      <td class="${winB ? 'cell-win' : ''}">${m.b}</td>
+      <td class="cell-num" style="text-align:right">${m.l1b}</td>
+      <td class="cell-num" style="text-align:right">${m.l2b}</td>
+      <td class="cell-num cell-agg" style="text-align:right">${aggB}</td>
+      <td class="cell-win">${m.winner}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MATCH CARD builder
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Builds a match card DOM node.
+ * teamA / teamB: { name, entry }  (entry may be null = TBD)
+ * gws: [leg1gw, leg2gw] or null if round not started
+ * ctx: { histories, entries, confirmedGws }
+ * Returns: { node, winnerTeam: {name, entry} | null, isDecided: bool }
+ */
+function buildMatchCard(teamA, teamB, gws, ctx) {
+  const { histories, entries, confirmedGws } = ctx;
+
+  // If no GWs assigned yet, show a TBD placeholder
+  if (!gws) {
+    const aName = teamA ? teamA.name : "TBD";
+    const bName = teamB ? teamB.name : "TBD";
+    const node = document.createElement("div");
+    node.className = "match-card is-tbd";
+    node.textContent = (teamA || teamB) ? `${aName} vs ${bName}` : "TBD";
+    return { node, winnerTeam: null, isDecided: false };
+  }
+
+  const [gw1, gw2] = gws;
+
+  const eA = teamA?.entry ?? null;
+  const eB = teamB?.entry ?? null;
+
+  const l1a = pts(histories, eA, gw1);
+  const l2a = pts(histories, eA, gw2);
+  const l1b = pts(histories, eB, gw1);
+  const l2b = pts(histories, eB, gw2);
+
+  const aggA = (l1a ?? 0) + (l2a ?? 0);
+  const aggB = (l1b ?? 0) + (l2b ?? 0);
+
+  const gw1Confirmed = confirmedGws.includes(gw1);
+  const gw2Confirmed = confirmedGws.includes(gw2);
+  const isLive = !gw1Confirmed || !gw2Confirmed;
+  const isDecided = gw1Confirmed && gw2Confirmed;
+
+  // Winner determination (only when both legs confirmed)
+  let winnerTeam = null;
+  if (isDecided) {
+    if (aggA > aggB) {
+      winnerTeam = teamA;
+    } else if (aggB > aggA) {
+      winnerTeam = teamB;
+    } else {
+      // Tiebreaker: better HPL league rank wins
+      const rA = leagueRank(entries, eA);
+      const rB = leagueRank(entries, eB);
+      if (rA != null && rB != null) {
+        winnerTeam = rA < rB ? teamA : teamB;
+      }
+    }
+  }
+
+  function fmtLegs(l1, l2) {
+    const s1 = l1 != null ? l1 : "–";
+    const s2 = l2 != null ? l2 : l1 != null ? "…" : "–";
+    return `${s1} + ${s2}`;
+  }
+
+  function teamRow(team, entry, l1, l2, agg, isWinner) {
+    const seed = seedOf(entry);
+    const stateClass = isDecided
+      ? (isWinner ? "t-winner" : "t-loser")
+      : "";
+    const aggDisplay = (l1 != null || l2 != null) ? agg : "–";
+    const legDisplay = (l1 != null || l2 != null) ? fmtLegs(l1, l2) : "—";
+
+    return `
+      <div class="match-team ${stateClass}">
+        ${seed ? `<span class="mt-seed">${seed.seed}</span>` : `<span></span>`}
+        <span class="mt-name" title="${team?.name ?? 'TBD'}">${team?.name ?? 'TBD'}</span>
+        <span class="mt-legs">${legDisplay}</span>
+        <span class="mt-agg">${aggDisplay}</span>
+      </div>`;
+  }
+
+  const node = document.createElement("div");
+  node.className = `match-card${isLive ? " is-live" : ""}`;
+  node.innerHTML =
+    teamRow(teamA, eA, l1a, l2a, aggA, winnerTeam === teamA) +
+    teamRow(teamB, eB, l1b, l2b, aggB, winnerTeam === teamB);
+
+  return { node, winnerTeam, isDecided };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RENDER – full bracket
+// ─────────────────────────────────────────────────────────────────────────────
+
+function renderBracket(ctx) {
+  const bracket = document.getElementById("bracket");
+  bracket.innerHTML = "";
+
+  // Helper: add a column to the bracket
+  function addCol(label, gwLabel, matches) {
+    const col = document.createElement("div");
+    col.className = "round-col";
+    col.innerHTML = `
+      <div class="round-header">
+        <div class="rh-name">${label}</div>
+        <div class="rh-gw">${gwLabel}</div>
+      </div>`;
+    const list = document.createElement("div");
+    list.className = "round-matches";
+    matches.forEach(n => list.appendChild(n));
+    col.appendChild(list);
+    bracket.appendChild(col);
+  }
+
+  // ── Round 2 ────────────────────────────────────────────────────────────
+  const r2Results = []; // { winnerTeam }
+
+  const r2Nodes = R2.map(m => {
+    const teamA = { name: m.seedName, entry: m.seedEntry };
+    const teamB = { name: m.oppName,  entry: ctx.entryByName(m.oppName) };
+    const { node, winnerTeam } = buildMatchCard(teamA, teamB, R2_GWS, ctx);
+    r2Results.push({ winnerTeam, teamA, teamB });
+    return node;
+  });
+
+  addCol("Round 2", `GW${R2_GWS[0]} + GW${R2_GWS[1]}`, r2Nodes);
+
+  // ── Quarter-Finals ─────────────────────────────────────────────────────
+  const qfResults = [];
+
+  const qfNodes = [0, 1, 2, 3].map(i => {
+    const mA = r2Results[i * 2];
+    const mB = r2Results[i * 2 + 1];
+    const teamA = mA.winnerTeam ?? null;
+    const teamB = mB.winnerTeam ?? null;
+    // No GWs set yet — show TBD or pending matchup
+    const labelA = teamA?.name ?? fallbackName(mA);
+    const labelB = teamB?.name ?? fallbackName(mB);
+    const { node, winnerTeam } = buildMatchCard(
+      teamA ? teamA : { name: labelA, entry: null },
+      teamB ? teamB : { name: labelB, entry: null },
+      null, // GWs TBD
+      ctx
+    );
+    qfResults.push({ winnerTeam, teamA: teamA ?? { name: labelA }, teamB: teamB ?? { name: labelB } });
+    return node;
+  });
+
+  addCol("Quarter-Finals", "GW TBD", qfNodes);
+
+  // ── Semi-Finals ────────────────────────────────────────────────────────
+  const sfResults = [];
+
+  const sfNodes = [0, 1].map(i => {
+    const mA = qfResults[i * 2];
+    const mB = qfResults[i * 2 + 1];
+    const teamA = mA.winnerTeam ?? null;
+    const teamB = mB.winnerTeam ?? null;
+    const { node, winnerTeam } = buildMatchCard(
+      teamA ?? { name: "TBD", entry: null },
+      teamB ?? { name: "TBD", entry: null },
+      null,
+      ctx
+    );
+    sfResults.push({ winnerTeam });
+    return node;
+  });
+
+  addCol("Semi-Finals", "GW TBD", sfNodes);
+
+  // ── Final ──────────────────────────────────────────────────────────────
+  const finTeamA = sfResults[0]?.winnerTeam ?? null;
+  const finTeamB = sfResults[1]?.winnerTeam ?? null;
+  const { node: finalNode } = buildMatchCard(
+    finTeamA ?? { name: "TBD", entry: null },
+    finTeamB ?? { name: "TBD", entry: null },
+    null,
+    ctx
+  );
+
+  addCol("Final", "GW TBD", [finalNode]);
+}
+
+function fallbackName(result) {
+  if (!result) return "TBD";
+  return `W: ${result.teamA?.name ?? "?"} / ${result.teamB?.name ?? "?"}`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────────────────────────────────────
+
+async function init() {
+  document.getElementById("scoring-label").textContent =
+    SCORING === "net" ? "net points (gross − transfer hits)" : "gross points";
+
+  renderR1();
+
+  const updatedLabel = document.getElementById("updated-label");
+  const livePill     = document.getElementById("live-pill");
+  const alertEl      = document.getElementById("data-alert");
+
+  try {
+    const res = await fetch(`data/hpl_data.json?t=${Date.now()}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    const entries      = data.entries     ?? [];
+    const histories    = data.histories   ?? {};
+    const confirmedGws = data.synced_gws  ?? [];
+    const fetchedAt    = data.fetched_at;
+    const gameweeks    = data.gameweeks   ?? [];
+
+    if (entries.length === 0) {
+      alertEl.innerHTML = `<div class="alert alert-warn">
+        &#9888; No data yet &mdash; run
+        <code>python3 fetch_hpl_data.py --force</code> locally,
+        then <code>git add data/hpl_data.json && git commit -m "Seed data" && git push</code>.
+      </div>`;
+      updatedLabel.textContent = "No data";
+      // Still render bracket skeleton with seeds
+    }
+
+    // Detect live GW
+    const currentGw = gameweeks.find(g => g.is_current);
+    const isLive = currentGw && !confirmedGws.includes(currentGw.id);
+    if (isLive) livePill.style.display = "inline-flex";
+
+    if (fetchedAt) {
+      const d = new Date(fetchedAt);
+      updatedLabel.textContent = `Updated ${d.toLocaleString(undefined, { dateStyle: "short", timeStyle: "short" })}`;
+    } else if (entries.length > 0) {
+      updatedLabel.textContent = "Data loaded";
+    }
+
+    // Build context
+    const ctx = {
+      histories,
+      entries,
+      confirmedGws,
+      entryByName: name => entryByName(entries, name),
+    };
+
+    renderBracket(ctx);
+
+  } catch (err) {
+    alertEl.innerHTML = `<div class="alert alert-warn">
+      &#9888; Could not load data/hpl_data.json: ${err.message}
+    </div>`;
+    updatedLabel.textContent = "Error";
+
+    // Render bracket with empty context so skeleton still shows
+    renderBracket({
+      histories: {},
+      entries: [],
+      confirmedGws: [],
+      entryByName: () => null,
+    });
+  }
+}
+
+init();
+
+// Auto-refresh every 5 minutes
+setInterval(() => location.reload(), 5 * 60 * 1000);
+</script>
+</body>
+</html>
