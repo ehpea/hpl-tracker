@@ -265,6 +265,66 @@
     }
     .mt-winner .mt-agg { color: var(--green); }
 
+    /* ── Tabs ───────────────────────────────────────────────────────────── */
+    .tab-bar {
+      display: flex;
+      gap: 2px;
+      padding: 0 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .tab-btn {
+      padding: 10px 18px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      margin-bottom: -1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── GW picker ──────────────────────────────────────────────────────── */
+    .gw-picker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .gw-picker label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .gw-select {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .gw-select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+    .gw-live-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--amber);
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 4px;
+      padding: 2px 6px;
+    }
+
     /* ── Error / empty ──────────────────────────────────────────────────── */
     .alert {
       padding: 12px 16px;
@@ -305,41 +365,81 @@
   &mdash; tiebreaker on aggregate uses HPL league standing at end of the second leg&rsquo;s GW.
 </div>
 
+<nav class="tab-bar">
+  <button class="tab-btn active" data-tab="bracket">Spring Cup</button>
+  <button class="tab-btn" data-tab="gwdata">Gameweek Data</button>
+</nav>
+
 <main>
 
-  <!-- Round 1 -->
-  <section>
-    <div class="section-title">Round 1 Results &mdash; GW26 + GW27</div>
-    <div class="r1-table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Team A</th>
-            <th style="text-align:right">GW26</th>
-            <th style="text-align:right">GW27</th>
-            <th style="text-align:right">Agg</th>
-            <th style="text-align:center">&nbsp;</th>
-            <th>Team B</th>
-            <th style="text-align:right">GW26</th>
-            <th style="text-align:right">GW27</th>
-            <th style="text-align:right">Agg</th>
-            <th>Winner</th>
-          </tr>
-        </thead>
-        <tbody id="r1-body"></tbody>
-      </table>
-    </div>
-  </section>
+  <!-- ── Tab: Spring Cup ── -->
+  <div class="tab-panel active" id="tab-bracket">
 
-  <!-- Main bracket -->
-  <section>
-    <div class="section-title">Spring Cup Bracket</div>
-    <div id="data-alert"></div>
-    <div class="bracket-scroll">
-      <div class="bracket" id="bracket"></div>
-    </div>
-  </section>
+    <!-- Round 1 -->
+    <section>
+      <div class="section-title">Round 1 Results &mdash; GW26 + GW27</div>
+      <div class="r1-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Team A</th>
+              <th style="text-align:right">GW26</th>
+              <th style="text-align:right">GW27</th>
+              <th style="text-align:right">Agg</th>
+              <th style="text-align:center">&nbsp;</th>
+              <th>Team B</th>
+              <th style="text-align:right">GW26</th>
+              <th style="text-align:right">GW27</th>
+              <th style="text-align:right">Agg</th>
+              <th>Winner</th>
+            </tr>
+          </thead>
+          <tbody id="r1-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Main bracket -->
+    <section>
+      <div class="section-title">Spring Cup Bracket</div>
+      <div id="data-alert"></div>
+      <div class="bracket-scroll">
+        <div class="bracket" id="bracket"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ── Tab: Gameweek Data ── -->
+  <div class="tab-panel" id="tab-gwdata">
+    <section>
+      <div class="section-title">Gameweek Standings</div>
+      <div class="gw-picker">
+        <label for="gw-select">Gameweek:</label>
+        <select class="gw-select" id="gw-select"></select>
+        <span id="gw-live-badge" class="gw-live-badge" style="display:none">LIVE</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table id="gw-table">
+          <thead>
+            <tr>
+              <th style="text-align:right">#</th>
+              <th>Team</th>
+              <th>Manager</th>
+              <th style="text-align:right">Gross</th>
+              <th style="text-align:right">Hits</th>
+              <th style="text-align:right">Net</th>
+              <th style="text-align:right">Transfers</th>
+              <th style="text-align:right">GW Rank</th>
+              <th style="text-align:right">Overall Rank</th>
+            </tr>
+          </thead>
+          <tbody id="gw-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
 
 </main>
 
@@ -689,6 +789,7 @@ async function init() {
     };
 
     renderBracket(ctx);
+    if (entries.length > 0) initGwTab(data);
 
   } catch (err) {
     alertEl.innerHTML = `<div class="alert alert-warn">
@@ -704,6 +805,96 @@ async function init() {
       entryByName: () => null,
     });
   }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TABS
+// ─────────────────────────────────────────────────────────────────────────────
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(`tab-${btn.dataset.tab}`).classList.add("active");
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GAMEWEEK DATA TAB
+// ─────────────────────────────────────────────────────────────────────────────
+
+function initGwTab(data) {
+  const { entries, histories, synced_gws, gameweeks } = data;
+  const confirmedGws = synced_gws ?? [];
+
+  // Figure out all GWs that have any data (confirmed + live current)
+  const currentGw = (gameweeks ?? []).find(g => g.is_current);
+  const allGws = [...confirmedGws];
+  if (currentGw && !allGws.includes(currentGw.id)) allGws.push(currentGw.id);
+  allGws.sort((a, b) => b - a); // most recent first
+
+  const select = document.getElementById("gw-select");
+  const liveBadge = document.getElementById("gw-live-badge");
+
+  allGws.forEach(gw => {
+    const opt = document.createElement("option");
+    opt.value = gw;
+    const isLive = currentGw && gw === currentGw.id && !confirmedGws.includes(gw);
+    opt.textContent = `Gameweek ${gw}${isLive ? " (live)" : ""}`;
+    select.appendChild(opt);
+  });
+
+  function renderGwTable(gw) {
+    const isLive = currentGw && gw === currentGw.id && !confirmedGws.includes(gw);
+    liveBadge.style.display = isLive ? "inline" : "none";
+
+    // Build rows: one per entry
+    const rows = entries.map(e => {
+      const h = (histories[String(e.entry)] ?? {})[String(gw)];
+      return {
+        entry_name: e.entry_name,
+        player_name: e.player_name,
+        gross: h?.gross ?? null,
+        cost: h?.cost ?? 0,
+        net: h?.net ?? null,
+        transfers: h?.transfers ?? null,
+        rank: h?.rank ?? null,
+        overall_rank: h?.overall_rank ?? null,
+      };
+    });
+
+    // Sort by gross desc, nulls last
+    rows.sort((a, b) => {
+      if (a.gross == null && b.gross == null) return 0;
+      if (a.gross == null) return 1;
+      if (b.gross == null) return -1;
+      return b.gross - a.gross;
+    });
+
+    const tbody = document.getElementById("gw-body");
+    tbody.innerHTML = "";
+    rows.forEach((r, i) => {
+      const tr = document.createElement("tr");
+      const fmt = v => v != null ? v.toLocaleString() : "–";
+      tr.innerHTML = `
+        <td class="cell-dim" style="text-align:right">${i + 1}</td>
+        <td>${r.entry_name}</td>
+        <td class="cell-dim">${r.player_name}</td>
+        <td class="cell-num" style="text-align:right;font-weight:700">${fmt(r.gross)}</td>
+        <td class="cell-num" style="text-align:right;color:${r.cost ? 'var(--red)' : 'var(--muted)'}">${r.cost ? `-${r.cost}` : "–"}</td>
+        <td class="cell-num" style="text-align:right">${fmt(r.net)}</td>
+        <td class="cell-num" style="text-align:right;color:var(--muted)">${fmt(r.transfers)}</td>
+        <td class="cell-num" style="text-align:right;color:var(--muted)">${fmt(r.rank)}</td>
+        <td class="cell-num" style="text-align:right;color:var(--muted)">${fmt(r.overall_rank)}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  if (allGws.length > 0) renderGwTable(allGws[0]);
+
+  select.addEventListener("change", () => renderGwTable(Number(select.value)));
 }
 
 init();
