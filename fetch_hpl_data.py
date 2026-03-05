@@ -181,6 +181,19 @@ def fetch_all():
     ]
     print(f"  ✓ {len(entries)} managers")
 
+    # ── HPL rank snapshots ─────────────────────────────────────────────────
+    # Store a snapshot of HPL mini-league ranks keyed by GW, so tiebreakers
+    # always use the rank from the correct leg-2 GW regardless of when the
+    # site is viewed.
+    if "hpl_ranks" not in output:
+        output["hpl_ranks"] = {}
+    snapshot_gw = max(confirmed) if confirmed else current_gw
+    if snapshot_gw:
+        output["hpl_ranks"][str(snapshot_gw)] = {
+            str(e["entry"]): e["rank"] for e in entries
+        }
+        print(f"  ✓ HPL rank snapshot stored for GW{snapshot_gw}")
+
     # ── Histories ─────────────────────────────────────────────────────────
     print(f"\n[3/3] Fetching histories for {len(entries)} managers...")
     if "histories" not in output:

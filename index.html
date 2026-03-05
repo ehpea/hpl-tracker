@@ -362,7 +362,7 @@
 
 <div class="scoring-note" style="margin-top:12px">
   &#9432;&nbsp; Scoring: <strong id="scoring-label">gross points</strong>
-  &mdash; tiebreaker on aggregate uses HPL league standing at end of the second leg&rsquo;s GW.
+  &mdash; tiebreaker (if tied on agg): 1) away goals &bull; 2) HPL standing at end of second leg&rsquo;s GW.
 </div>
 
 <nav class="tab-bar">
@@ -594,11 +594,21 @@ function buildMatchCard(teamA, teamB, gws, ctx) {
     } else if (aggB > aggA) {
       winnerTeam = teamB;
     } else {
-      // Tiebreaker: better HPL league rank wins
-      const rA = leagueRank(entries, eA);
-      const rB = leagueRank(entries, eB);
-      if (rA != null && rB != null) {
-        winnerTeam = rA < rB ? teamA : teamB;
+      // Tiebreaker 1: away goals
+      // teamA is home in leg 1 (gw1), so their away goals = leg 2 score
+      // teamB is home in leg 2 (gw2), so their away goals = leg 1 score
+      const awayA = l2a ?? 0;
+      const awayB = l1b ?? 0;
+      if (awayA !== awayB) {
+        winnerTeam = awayA > awayB ? teamA : teamB;
+      } else {
+        // Tiebreaker 2: HPL rank at end of leg 2's GW (snapshotted at sync time)
+        const snapshot = (ctx.hplRanks ?? {})[String(gw2)] ?? {};
+        const rA = eA != null ? (snapshot[String(eA)] ?? null) : null;
+        const rB = eB != null ? (snapshot[String(eB)] ?? null) : null;
+        if (rA != null && rB != null) {
+          winnerTeam = rA < rB ? teamA : teamB;
+        }
       }
     }
   }
@@ -781,10 +791,12 @@ async function init() {
     }
 
     // Build context
+    const hplRanks = data.hpl_ranks ?? {};
     const ctx = {
       histories,
       entries,
       confirmedGws,
+      hplRanks,
       entryByName: name => entryByName(entries, name),
     };
 
@@ -802,6 +814,7 @@ async function init() {
       histories: {},
       entries: [],
       confirmedGws: [],
+      hplRanks: {},
       entryByName: () => null,
     });
   }
