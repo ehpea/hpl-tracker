@@ -13,7 +13,8 @@ import sys
 import time
 import urllib.request
 import urllib.error
-from datetime import datetime, timezone
+from collections import defaultdict
+from datetime import datetime, timedelta, timezone
 
 LEAGUE_ID = 32567
 BASE = "https://fantasy.premierleague.com/api"
@@ -33,25 +34,21 @@ def get(path):
         return json.loads(resp.read().decode())
 
 
-def today_utc():
-    return datetime.now(timezone.utc).date()
-
-
 # ── Step 1: Check if we should run ────────────────────────────────────────────
 
 def should_fetch():
     """
     Returns (should_run: bool, reason: str)
     Logic:
-      1. Get current GW from bootstrap
-      2. Get fixtures for that GW
-      3. Are any fixtures scheduled for today (UTC)?
-         → No: skip (no games today)
-         → Yes: are ALL of today's fixtures finished AND bonus confirmed?
-            → No: skip (games in progress or bonus not yet added)
-            → Yes: have we already stored this GW?
-               → Yes: skip (already up to date)
-               → No: run the fetch
+      1. Get current GW fixtures
+      2. Group by calendar date (UTC kickoff)
+      3. Find the most recent date where ALL fixtures are finished + bonus confirmed
+      4. If we already fetched AFTER the last kickoff on that date, skip
+         (avoids re-fetching the same data every 3 hours)
+      5. Otherwise fetch
+
+    This avoids the UTC-midnight problem where "today" flips before the previous
+    day's bonus points have been stored.
     """
     if FORCE:
         return True, "forced via --force flag"
@@ -69,44 +66,59 @@ def should_fetch():
     gw_id = current_gw["id"]
     print(f"Current GW: {gw_id}")
 
-    # Get fixtures for this GW
-    fixtures = get(f"/fixtures/?event={gw_id}")
-    today = today_utc()
+    # Already fully confirmed and stored?
+    existing = {}
+    try:
+        with open(OUTPUT_FILE) as f:
+            existing = json.load(f)
+        if gw_id in existing.get("synced_gws", []):
+            return False, f"GW{gw_id} already fully confirmed and stored, skipping"
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
 
-    # Find fixtures scheduled for today
-    todays_fixtures = []
+    # Get fixtures for this GW, group by date
+    fixtures = get(f"/fixtures/?event={gw_id}")
+    now = datetime.now(timezone.utc)
+
+    by_date = defaultdict(list)
     for f in fixtures:
         if not f.get("kickoff_time"):
             continue
         ko = datetime.fromisoformat(f["kickoff_time"].replace("Z", "+00:00"))
-        if ko.date() == today:
-            todays_fixtures.append(f)
+        if ko <= now:  # only fixtures that have already kicked off
+            by_date[ko.date()].append(f)
 
-    if not todays_fixtures:
-        return False, f"No Premier League fixtures today ({today}), skipping"
+    if not by_date:
+        return False, f"No fixtures have kicked off in GW{gw_id} yet"
 
-    print(f"Found {len(todays_fixtures)} fixture(s) today:")
-    for f in todays_fixtures:
-        status = "✓ finished" if f.get("finished") else "⟳ in progress / upcoming"
-        bonus = "✓ bonus confirmed" if f.get("finished_provisional") else "⏳ bonus pending"
-        print(f"  Fixture {f['id']}: {status}, {bonus}")
+    # Find the most recent date where all fixtures are bonus-confirmed
+    most_recent_confirmed = None
+    for date in sorted(by_date.keys(), reverse=True):
+        day_fixtures = by_date[date]
+        all_done = all(f.get("finished") and f.get("finished_provisional") for f in day_fixtures)
+        status = "✓ all confirmed" if all_done else "⏳ bonus pending"
+        print(f"  {date}: {len(day_fixtures)} fixture(s) — {status}")
+        if all_done and most_recent_confirmed is None:
+            most_recent_confirmed = date
 
-    # All of today's fixtures must be finished with bonus confirmed
-    all_done = all(f.get("finished") and f.get("finished_provisional") for f in todays_fixtures)
-    if not all_done:
-        return False, "Today's fixtures not yet fully confirmed (bonus points still pending)"
+    if most_recent_confirmed is None:
+        return False, "No fully confirmed fixture days in this GW yet"
 
-    # Check if we already have this GW stored
-    try:
-        with open(OUTPUT_FILE) as f:
-            existing = json.load(f)
-        already_synced = existing.get("synced_gws", [])
-        if gw_id in already_synced:
-            return False, f"GW{gw_id} already stored, skipping"
-    except (FileNotFoundError, json.JSONDecodeError):
-        pass  # No existing file, proceed
+    # Check if we already fetched after this batch confirmed
+    # (last kickoff on that date + 3h buffer for bonus processing)
+    last_ko = max(
+        datetime.fromisoformat(f["kickoff_time"].replace("Z", "+00:00"))
+        for f in by_date[most_recent_confirmed]
+    )
+    fetch_threshold = last_ko + timedelta(hours=3)
 
-    return True, f"GW{gw_id} has confirmed fixtures today, fetching data"
+    fetched_at = existing.get("fetched_at")
+    if fetched_at:
+        last_fetch = datetime.fromisoformat(fetched_at)
+        if last_fetch > fetch_threshold:
+            return False, f"Already fetched after {most_recent_confirmed}'s bonuses confirmed, skipping"
+
+    return True, f"GW{gw_id}: {most_recent_confirmed} fixtures confirmed, fetching data"
 
 
 # ── Step 2: Fetch everything ───────────────────────────────────────────────────
