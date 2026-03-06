@@ -14,7 +14,7 @@ import time
 import urllib.request
 import urllib.error
 from collections import defaultdict
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 LEAGUE_ID = 32567
 BASE = "https://fantasy.premierleague.com/api"
@@ -40,15 +40,13 @@ def should_fetch():
     """
     Returns (should_run: bool, reason: str)
     Logic:
-      1. Get current GW fixtures
-      2. Group by calendar date (UTC kickoff)
-      3. Find the most recent date where ALL fixtures are finished + bonus confirmed
-      4. If we already fetched AFTER the last kickoff on that date, skip
-         (avoids re-fetching the same data every 3 hours)
-      5. Otherwise fetch
+      1. If GW is already data_checked (in synced_gws), skip — fully finalised.
+      2. Otherwise, find the most recent fixture date where all bonuses confirmed.
+      3. If found, fetch — FPL may still be adjusting scores until data_checked=True.
 
-    This avoids the UTC-midnight problem where "today" flips before the previous
-    day's bonus points have been stored.
+    We rely on the git diff in the workflow to avoid committing when nothing changed.
+    This avoids both the UTC-midnight problem and the stale-score problem where FPL
+    updates points after finished_provisional is set but before data_checked.
     """
     if FORCE:
         return True, "forced via --force flag"
@@ -103,20 +101,6 @@ def should_fetch():
 
     if most_recent_confirmed is None:
         return False, "No fully confirmed fixture days in this GW yet"
-
-    # Check if we already fetched after this batch confirmed
-    # (last kickoff on that date + 3h buffer for bonus processing)
-    last_ko = max(
-        datetime.fromisoformat(f["kickoff_time"].replace("Z", "+00:00"))
-        for f in by_date[most_recent_confirmed]
-    )
-    fetch_threshold = last_ko + timedelta(hours=3)
-
-    fetched_at = existing.get("fetched_at")
-    if fetched_at:
-        last_fetch = datetime.fromisoformat(fetched_at)
-        if last_fetch > fetch_threshold:
-            return False, f"Already fetched after {most_recent_confirmed}'s bonuses confirmed, skipping"
 
     return True, f"GW{gw_id}: {most_recent_confirmed} fixtures confirmed, fetching data"
 
@@ -224,13 +208,32 @@ def fetch_all():
 
     # ── Mark synced GWs ────────────────────────────────────────────────────
     output["synced_gws"] = confirmed
-    output["fetched_at"] = datetime.now(timezone.utc).isoformat()
     output["league_id"] = LEAGUE_ID
+
+    # Only update fetched_at if actual score data changed.
+    # This keeps the JSON bit-for-bit identical when nothing changed,
+    # so the git diff is empty and no commit is made.
+    SCORE_KEYS = ("entries", "histories", "synced_gws", "hpl_ranks")
+    def fingerprint(d):
+        return json.dumps({k: d.get(k) for k in SCORE_KEYS}, sort_keys=True)
+
+    try:
+        with open(OUTPUT_FILE) as f:
+            prev = json.load(f)
+        data_changed = fingerprint(output) != fingerprint(prev)
+    except (FileNotFoundError, json.JSONDecodeError):
+        data_changed = True
+
+    if data_changed:
+        output["fetched_at"] = datetime.now(timezone.utc).isoformat()
+        print("\n✓ Scores changed — updating fetched_at")
+    else:
+        print("\n✓ Scores unchanged — preserving fetched_at (no commit will be made)")
 
     with open(OUTPUT_FILE, "w") as f:
         json.dump(output, f, indent=2)
 
-    print(f"\n✓ Saved to {OUTPUT_FILE}")
+    print(f"✓ Saved to {OUTPUT_FILE}")
     print(f"  Confirmed GWs stored: {confirmed}")
     return True
 
