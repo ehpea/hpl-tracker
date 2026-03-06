@@ -2,10 +2,8 @@ name: Sync HPL Data
 
 on:
   schedule:
-    # Runs every 3 hours
-    - cron: "0 */3 * * *"
-    # Extra run at 04:14 UTC (8:14 PM PT) to catch confirmed bonuses after evening games
-    - cron: "14 4 * * *"
+    # Runs every 15 minutes
+    - cron: "*/15 * * * *"
   workflow_dispatch:
     # Also allows manual trigger from GitHub Actions tab
     inputs:
