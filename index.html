@@ -487,7 +487,10 @@ const R2 = [
   { seed: 6, seedEntry: 1284138, seedName: "TopGunners",        oppName: "FullKitWnkr"   },
 ];
 
-const R2_GWS = [28, 29];
+const R2_GWS    = [28, 29];
+const QF_GWS    = [30, 31];
+const SF_GWS    = [32, 33];
+const FINAL_GWS = [34, 35];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // HELPERS
@@ -696,14 +699,14 @@ function renderBracket(ctx) {
     const { node, winnerTeam } = buildMatchCard(
       teamA ? teamA : { name: labelA, entry: null },
       teamB ? teamB : { name: labelB, entry: null },
-      null, // GWs TBD
+      QF_GWS,
       ctx
     );
     qfResults.push({ winnerTeam, teamA: teamA ?? { name: labelA }, teamB: teamB ?? { name: labelB } });
     return node;
   });
 
-  addCol("Quarter-Finals", "GW TBD", qfNodes);
+  addCol("Quarter-Finals", `GW${QF_GWS[0]} + GW${QF_GWS[1]}`, qfNodes);
 
   // ── Semi-Finals ────────────────────────────────────────────────────────
   const sfResults = [];
@@ -716,14 +719,14 @@ function renderBracket(ctx) {
     const { node, winnerTeam } = buildMatchCard(
       teamA ?? { name: "TBD", entry: null },
       teamB ?? { name: "TBD", entry: null },
-      null,
+      SF_GWS,
       ctx
     );
     sfResults.push({ winnerTeam });
     return node;
   });
 
-  addCol("Semi-Finals", "GW TBD", sfNodes);
+  addCol("Semi-Finals", `GW${SF_GWS[0]} + GW${SF_GWS[1]}`, sfNodes);
 
   // ── Final ──────────────────────────────────────────────────────────────
   const finTeamA = sfResults[0]?.winnerTeam ?? null;
@@ -731,11 +734,11 @@ function renderBracket(ctx) {
   const { node: finalNode } = buildMatchCard(
     finTeamA ?? { name: "TBD", entry: null },
     finTeamB ?? { name: "TBD", entry: null },
-    null,
+    FINAL_GWS,
     ctx
   );
 
-  addCol("Final", "GW TBD", [finalNode]);
+  addCol("Final", `GW${FINAL_GWS[0]} + GW${FINAL_GWS[1]}`, [finalNode]);
 }
 
 function fallbackName(result) {
