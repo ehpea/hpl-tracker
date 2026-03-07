@@ -27,11 +27,19 @@ HEADERS = {
 }
 
 
-def get(path):
+def get(path, retries=3, backoff=5):
     url = f"{BASE}{path}"
     req = urllib.request.Request(url, headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=15) as resp:
-        return json.loads(resp.read().decode())
+    for attempt in range(retries):
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                return json.loads(resp.read().decode())
+        except (urllib.error.URLError, OSError) as e:
+            if attempt < retries - 1:
+                print(f"  Network error ({e}), retrying in {backoff}s...")
+                time.sleep(backoff)
+            else:
+                raise
 
 
 # ── Step 1: Check if we should run ────────────────────────────────────────────
@@ -244,12 +252,23 @@ if __name__ == "__main__":
     print(f"HPL Sync — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     print("=" * 50)
 
-    run, reason = should_fetch()
+    try:
+        run, reason = should_fetch()
+    except (urllib.error.URLError, OSError) as e:
+        print(f"\n⚠ Network error during check: {e}")
+        print("Skipping this run due to transient network failure.")
+        sys.exit(0)
+
     print(f"\n→ {reason}")
 
     if run:
         print("\nStarting fetch...\n")
-        fetch_all()
+        try:
+            fetch_all()
+        except (urllib.error.URLError, OSError) as e:
+            print(f"\n⚠ Network error during fetch: {e}")
+            print("Skipping this run due to transient network failure.")
+            sys.exit(0)
         print("\nDone ✓")
     else:
         print("Nothing to do, exiting.")
