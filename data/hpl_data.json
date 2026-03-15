@@ -1,6 +1,6 @@
 {
   "league_id": 32567,
-  "fetched_at": "2026-03-15T22:53:03.965414+00:00",
+  "fetched_at": "2026-03-15T23:23:28.478783+00:00",
   "synced_gws": [
     1,
     2,
@@ -416,28 +416,28 @@
   ],
   "entries": [
     {
-      "entry": 224773,
-      "entry_name": "Maguerrrrrrrroooo",
-      "player_name": "Austin Magaro",
-      "total": 1774,
-      "event_total": 45,
-      "rank": 1,
-      "last_rank": 1
-    },
-    {
       "entry": 4350665,
       "entry_name": "Gyok Tuah",
       "player_name": "Ben Cadwallader",
-      "total": 1772,
+      "total": 1776,
       "event_total": 53,
-      "rank": 2,
+      "rank": 1,
       "last_rank": 2
+    },
+    {
+      "entry": 224773,
+      "entry_name": "Maguerrrrrrrroooo",
+      "player_name": "Austin Magaro",
+      "total": 1776,
+      "event_total": 45,
+      "rank": 2,
+      "last_rank": 1
     },
     {
       "entry": 2495071,
       "entry_name": "Dele Lalli",
       "player_name": "Michael Lally",
-      "total": 1767,
+      "total": 1771,
       "event_total": 60,
       "rank": 3,
       "last_rank": 3
@@ -446,7 +446,7 @@
       "entry": 176770,
       "entry_name": "El Bee FC",
       "player_name": "Andrew Peterson",
-      "total": 1752,
+      "total": 1755,
       "event_total": 60,
       "rank": 4,
       "last_rank": 4
@@ -455,7 +455,7 @@
       "entry": 1284138,
       "entry_name": "TopGunners",
       "player_name": "Brian Gilbert",
-      "total": 1744,
+      "total": 1747,
       "event_total": 53,
       "rank": 5,
       "last_rank": 6
@@ -464,7 +464,7 @@
       "entry": 176123,
       "entry_name": "The Blues",
       "player_name": "Mark Cleverdon",
-      "total": 1733,
+      "total": 1738,
       "event_total": 62,
       "rank": 6,
       "last_rank": 9
@@ -473,7 +473,7 @@
       "entry": 85174,
       "entry_name": "FC Perroncel",
       "player_name": "James Fulton",
-      "total": 1732,
+      "total": 1734,
       "event_total": 40,
       "rank": 7,
       "last_rank": 5
@@ -482,7 +482,7 @@
       "entry": 3043654,
       "entry_name": "BASTOURS",
       "player_name": "Michael Hany",
-      "total": 1728,
+      "total": 1730,
       "event_total": 39,
       "rank": 8,
       "last_rank": 7
@@ -491,7 +491,7 @@
       "entry": 5711505,
       "entry_name": "The Wirtz",
       "player_name": "Joe Bulak",
-      "total": 1727,
+      "total": 1729,
       "event_total": 44,
       "rank": 9,
       "last_rank": 8
@@ -500,7 +500,7 @@
       "entry": 1061944,
       "entry_name": "Palm Tree",
       "player_name": "Hany Nakhla",
-      "total": 1710,
+      "total": 1712,
       "event_total": 50,
       "rank": 10,
       "last_rank": 10
@@ -509,7 +509,7 @@
       "entry": 4348759,
       "entry_name": "FullKitWnkr",
       "player_name": "Cory Riccio",
-      "total": 1703,
+      "total": 1707,
       "event_total": 55,
       "rank": 11,
       "last_rank": 11
@@ -518,7 +518,7 @@
       "entry": 1547046,
       "entry_name": "WeHa FC",
       "player_name": "Matthew Lombardi",
-      "total": 1692,
+      "total": 1696,
       "event_total": 54,
       "rank": 12,
       "last_rank": 12
@@ -527,7 +527,7 @@
       "entry": 2913554,
       "entry_name": "Mainstreeters",
       "player_name": "Bryan Straz",
-      "total": 1690,
+      "total": 1694,
       "event_total": 58,
       "rank": 13,
       "last_rank": 13
@@ -536,10 +536,19 @@
       "entry": 1031462,
       "entry_name": "Ryan's Reds",
       "player_name": "Ryan Cleverdon",
-      "total": 1672,
+      "total": 1674,
       "event_total": 45,
       "rank": 14,
       "last_rank": 14
+    },
+    {
+      "entry": 3709440,
+      "entry_name": "Raymond Gapist FC",
+      "player_name": "Tyler Cleverdon",
+      "total": 1658,
+      "event_total": 58,
+      "rank": 15,
+      "last_rank": 17
     },
     {
       "entry": 3414058,
@@ -547,23 +556,14 @@
       "player_name": "Joe Futtner",
       "total": 1655,
       "event_total": 48,
-      "rank": 15,
-      "last_rank": 15
-    },
-    {
-      "entry": 3709440,
-      "entry_name": "Raymond Gapist FC",
-      "player_name": "Tyler Cleverdon",
-      "total": 1654,
-      "event_total": 58,
       "rank": 16,
-      "last_rank": 17
+      "last_rank": 15
     },
     {
       "entry": 3438785,
       "entry_name": "Szaf Bet",
       "player_name": "Mark Szafir",
-      "total": 1652,
+      "total": 1654,
       "event_total": 47,
       "rank": 17,
       "last_rank": 15
@@ -572,7 +572,7 @@
       "entry": 3697422,
       "entry_name": "HogWirtz",
       "player_name": "Paul Szafir",
-      "total": 1620,
+      "total": 1622,
       "event_total": 39,
       "rank": 18,
       "last_rank": 18
@@ -581,7 +581,7 @@
       "entry": 2433982,
       "entry_name": "Saratoga Stallions",
       "player_name": "John Perron",
-      "total": 1575,
+      "total": 1578,
       "event_total": 45,
       "rank": 19,
       "last_rank": 19
@@ -590,7 +590,7 @@
       "entry": 4460696,
       "entry_name": "Slot in the Dark",
       "player_name": "Jim Honda",
-      "total": 1553,
+      "total": 1557,
       "event_total": 43,
       "rank": 20,
       "last_rank": 20
@@ -599,7 +599,7 @@
       "entry": 1318177,
       "entry_name": "Grand Case FC",
       "player_name": "Aaron Thayer",
-      "total": 1539,
+      "total": 1540,
       "event_total": 48,
       "rank": 21,
       "last_rank": 21
@@ -617,7 +617,7 @@
       "entry": 3597783,
       "entry_name": "Return of the Djedi",
       "player_name": "Michael Baird",
-      "total": 1441,
+      "total": 1443,
       "event_total": 39,
       "rank": 23,
       "last_rank": 23
@@ -626,7 +626,7 @@
       "entry": 4566337,
       "entry_name": "NCCC all stars",
       "player_name": "Scott Grouten",
-      "total": 1411,
+      "total": 1413,
       "event_total": 28,
       "rank": 24,
       "last_rank": 24
@@ -6470,8 +6470,8 @@
       "4566337": 24
     },
     "29": {
-      "224773": 1,
-      "4350665": 2,
+      "4350665": 1,
+      "224773": 2,
       "2495071": 3,
       "176770": 4,
       "1284138": 5,
@@ -6484,8 +6484,8 @@
       "1547046": 12,
       "2913554": 13,
       "1031462": 14,
-      "3414058": 15,
-      "3709440": 16,
+      "3709440": 15,
+      "3414058": 16,
       "3438785": 17,
       "3697422": 18,
       "2433982": 19,
