@@ -1,6 +1,6 @@
 {
   "league_id": 32567,
-  "fetched_at": "2026-03-15T19:47:34.770566+00:00",
+  "fetched_at": "2026-03-15T20:21:51.504557+00:00",
   "synced_gws": [
     1,
     2,
@@ -872,7 +872,7 @@
         "net": 43,
         "transfers": 0,
         "rank": 2973298,
-        "overall_rank": 125704
+        "overall_rank": 125705
       }
     },
     "4350665": {
@@ -1114,7 +1114,7 @@
         "net": 49,
         "transfers": 0,
         "rank": 1267360,
-        "overall_rank": 131370
+        "overall_rank": 131371
       }
     },
     "3043654": {
@@ -1356,7 +1356,7 @@
         "net": 37,
         "transfers": 1,
         "rank": 5841407,
-        "overall_rank": 439634
+        "overall_rank": 439633
       }
     },
     "176770": {
@@ -1598,7 +1598,7 @@
         "net": 57,
         "transfers": 0,
         "rank": 276278,
-        "overall_rank": 236097
+        "overall_rank": 236098
       }
     },
     "5711505": {
@@ -1840,7 +1840,7 @@
         "net": 42,
         "transfers": 0,
         "rank": 3333952,
-        "overall_rank": 443564
+        "overall_rank": 443563
       }
     },
     "2495071": {
@@ -2082,7 +2082,7 @@
         "net": 56,
         "transfers": 0,
         "rank": 338851,
-        "overall_rank": 153676
+        "overall_rank": 153677
       }
     },
     "1284138": {
@@ -2566,7 +2566,7 @@
         "net": 38,
         "transfers": 0,
         "rank": 5046103,
-        "overall_rank": 395976
+        "overall_rank": 395975
       }
     },
     "176123": {
@@ -2808,7 +2808,7 @@
         "net": 57,
         "transfers": 0,
         "rank": 276278,
-        "overall_rank": 387591
+        "overall_rank": 387590
       }
     },
     "1547046": {
@@ -3050,7 +3050,7 @@
         "net": 50,
         "transfers": 0,
         "rank": 1077202,
-        "overall_rank": 903293
+        "overall_rank": 903297
       }
     },
     "1061944": {
@@ -3292,7 +3292,7 @@
         "net": 48,
         "transfers": 1,
         "rank": 1634689,
-        "overall_rank": 650166
+        "overall_rank": 650167
       }
     },
     "2913554": {
@@ -3534,7 +3534,7 @@
         "net": 54,
         "transfers": 2,
         "rank": 600869,
-        "overall_rank": 939162
+        "overall_rank": 939166
       }
     },
     "3438785": {
@@ -3776,7 +3776,7 @@
         "net": 45,
         "transfers": 0,
         "rank": 2317401,
-        "overall_rank": 1672338
+        "overall_rank": 1672344
       }
     },
     "4348759": {
@@ -4018,7 +4018,7 @@
         "net": 51,
         "transfers": 0,
         "rank": 911075,
-        "overall_rank": 748284
+        "overall_rank": 748286
       }
     },
     "3709440": {
@@ -4260,7 +4260,7 @@
         "net": 54,
         "transfers": 1,
         "rank": 576136,
-        "overall_rank": 1636435
+        "overall_rank": 1636442
       }
     },
     "3414058": {
@@ -4502,7 +4502,7 @@
         "net": 48,
         "transfers": 2,
         "rank": 1681974,
-        "overall_rank": 1610578
+        "overall_rank": 1610585
       }
     },
     "1031462": {
@@ -4744,7 +4744,7 @@
         "net": 43,
         "transfers": 0,
         "rank": 2973298,
-        "overall_rank": 1257693
+        "overall_rank": 1257699
       }
     },
     "3697422": {
@@ -4986,7 +4986,7 @@
         "net": 37,
         "transfers": 0,
         "rank": 5500102,
-        "overall_rank": 2437776
+        "overall_rank": 2437784
       }
     },
     "4460696": {
@@ -5228,7 +5228,7 @@
         "net": 39,
         "transfers": 4,
         "rank": 5031545,
-        "overall_rank": 4302708
+        "overall_rank": 4302727
       }
     },
     "2433982": {
@@ -5470,7 +5470,7 @@
         "net": 42,
         "transfers": 0,
         "rank": 3333952,
-        "overall_rank": 3676963
+        "overall_rank": 3676979
       }
     },
     "1470046": {
@@ -5712,7 +5712,7 @@
         "net": 39,
         "transfers": 1,
         "rank": 4914293,
-        "overall_rank": 4962360
+        "overall_rank": 4962381
       }
     },
     "1318177": {
@@ -5954,7 +5954,7 @@
         "net": 47,
         "transfers": 1,
         "rank": 1904344,
-        "overall_rank": 4710479
+        "overall_rank": 4710499
       }
     },
     "4566337": {
@@ -6196,7 +6196,7 @@
         "net": 26,
         "transfers": 0,
         "rank": 10368260,
-        "overall_rank": 7924118
+        "overall_rank": 7924163
       }
     },
     "3597783": {
@@ -6438,7 +6438,7 @@
         "net": 37,
         "transfers": 0,
         "rank": 5500102,
-        "overall_rank": 7268931
+        "overall_rank": 7268968
       }
     }
   },
