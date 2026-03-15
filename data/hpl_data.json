@@ -1,6 +1,6 @@
 {
   "league_id": 32567,
-  "fetched_at": "2026-03-15T20:52:15.065584+00:00",
+  "fetched_at": "2026-03-15T21:22:47.637446+00:00",
   "synced_gws": [
     1,
     2,
@@ -330,8 +330,8 @@
       "confirmed": false,
       "is_current": true,
       "is_next": false,
-      "average_score": 35,
-      "highest_score": 103
+      "average_score": 37,
+      "highest_score": 109
     },
     {
       "id": 31,
