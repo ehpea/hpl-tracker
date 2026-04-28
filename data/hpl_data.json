@@ -1,6 +1,6 @@
 {
   "league_id": 32567,
-  "fetched_at": "2026-04-28T01:21:41.275919+00:00",
+  "fetched_at": "2026-04-28T04:52:44.533561+00:00",
   "synced_gws": [
     1,
     2,
@@ -423,61 +423,61 @@
       "entry": 224773,
       "entry_name": "Maguerrrrrrrroooo",
       "player_name": "Austin Magaro",
-      "total": 2091,
+      "total": 2100,
       "event_total": 60,
       "rank": 1,
       "last_rank": 1
     },
     {
-      "entry": 176123,
-      "entry_name": "The Blues",
-      "player_name": "Mark Cleverdon",
-      "total": 2073,
-      "event_total": 74,
-      "rank": 2,
-      "last_rank": 4
-    },
-    {
       "entry": 2495071,
       "entry_name": "Dele Lalli",
       "player_name": "Michael Lally",
-      "total": 2069,
+      "total": 2080,
       "event_total": 62,
-      "rank": 3,
+      "rank": 2,
       "last_rank": 2
+    },
+    {
+      "entry": 176123,
+      "entry_name": "The Blues",
+      "player_name": "Mark Cleverdon",
+      "total": 2077,
+      "event_total": 74,
+      "rank": 3,
+      "last_rank": 4
     },
     {
       "entry": 4350665,
       "entry_name": "Gyok Tuah",
       "player_name": "Ben Cadwallader",
-      "total": 2063,
+      "total": 2073,
       "event_total": 56,
       "rank": 4,
       "last_rank": 3
     },
     {
-      "entry": 1284138,
-      "entry_name": "TopGunners",
-      "player_name": "Brian Gilbert",
-      "total": 2046,
-      "event_total": 71,
-      "rank": 5,
-      "last_rank": 7
-    },
-    {
       "entry": 85174,
       "entry_name": "FC Perroncel",
       "player_name": "James Fulton",
-      "total": 2043,
+      "total": 2052,
       "event_total": 58,
-      "rank": 6,
+      "rank": 5,
       "last_rank": 5
+    },
+    {
+      "entry": 1284138,
+      "entry_name": "TopGunners",
+      "player_name": "Brian Gilbert",
+      "total": 2051,
+      "event_total": 71,
+      "rank": 6,
+      "last_rank": 7
     },
     {
       "entry": 176770,
       "entry_name": "El Bee FC",
       "player_name": "Andrew Peterson",
-      "total": 2017,
+      "total": 2030,
       "event_total": 47,
       "rank": 7,
       "last_rank": 6
@@ -486,7 +486,7 @@
       "entry": 3043654,
       "entry_name": "BASTOURS",
       "player_name": "Michael Hany",
-      "total": 2010,
+      "total": 2024,
       "event_total": 68,
       "rank": 8,
       "last_rank": 8
@@ -495,7 +495,7 @@
       "entry": 1547046,
       "entry_name": "WeHa FC",
       "player_name": "Matthew Lombardi",
-      "total": 2005,
+      "total": 2006,
       "event_total": 52,
       "rank": 9,
       "last_rank": 9
@@ -504,7 +504,7 @@
       "entry": 2913554,
       "entry_name": "Mainstreeters",
       "player_name": "Bryan Straz",
-      "total": 1988,
+      "total": 1997,
       "event_total": 58,
       "rank": 10,
       "last_rank": 10
@@ -513,7 +513,7 @@
       "entry": 1061944,
       "entry_name": "Palm Tree",
       "player_name": "Hany Nakhla",
-      "total": 1978,
+      "total": 1982,
       "event_total": 66,
       "rank": 11,
       "last_rank": 12
@@ -522,7 +522,7 @@
       "entry": 5711505,
       "entry_name": "The Wirtz",
       "player_name": "Joe Bulak",
-      "total": 1946,
+      "total": 1962,
       "event_total": 36,
       "rank": 12,
       "last_rank": 11
@@ -531,7 +531,7 @@
       "entry": 4348759,
       "entry_name": "FullKitWnkr",
       "player_name": "Cory Riccio",
-      "total": 1940,
+      "total": 1949,
       "event_total": 69,
       "rank": 13,
       "last_rank": 13
@@ -540,7 +540,7 @@
       "entry": 3709440,
       "entry_name": "Raymond Gapist FC",
       "player_name": "Tyler Cleverdon",
-      "total": 1924,
+      "total": 1933,
       "event_total": 55,
       "rank": 14,
       "last_rank": 14
@@ -549,7 +549,7 @@
       "entry": 3414058,
       "entry_name": "Guiu Pride",
       "player_name": "Joe Futtner",
-      "total": 1911,
+      "total": 1930,
       "event_total": 59,
       "rank": 15,
       "last_rank": 15
@@ -558,7 +558,7 @@
       "entry": 1031462,
       "entry_name": "Ryan's Reds",
       "player_name": "Ryan Cleverdon",
-      "total": 1877,
+      "total": 1903,
       "event_total": 56,
       "rank": 16,
       "last_rank": 16
@@ -567,7 +567,7 @@
       "entry": 3438785,
       "entry_name": "Szaf Bet",
       "player_name": "Mark Szafir",
-      "total": 1860,
+      "total": 1867,
       "event_total": 37,
       "rank": 17,
       "last_rank": 17
@@ -576,7 +576,7 @@
       "entry": 3697422,
       "entry_name": "HogWirtz",
       "player_name": "Paul Szafir",
-      "total": 1832,
+      "total": 1853,
       "event_total": 33,
       "rank": 18,
       "last_rank": 18
@@ -594,7 +594,7 @@
       "entry": 4460696,
       "entry_name": "Slot in the Dark",
       "player_name": "Jim Honda",
-      "total": 1774,
+      "total": 1792,
       "event_total": 37,
       "rank": 20,
       "last_rank": 20
@@ -603,7 +603,7 @@
       "entry": 1470046,
       "entry_name": "South Shore SC",
       "player_name": "Benjamin Kamlet",
-      "total": 1772,
+      "total": 1782,
       "event_total": 49,
       "rank": 21,
       "last_rank": 21
@@ -612,7 +612,7 @@
       "entry": 1318177,
       "entry_name": "Grand Case FC",
       "player_name": "Aaron Thayer",
-      "total": 1724,
+      "total": 1728,
       "event_total": 27,
       "rank": 22,
       "last_rank": 22
@@ -621,7 +621,7 @@
       "entry": 3597783,
       "entry_name": "Return of the Djedi",
       "player_name": "Michael Baird",
-      "total": 1613,
+      "total": 1628,
       "event_total": 30,
       "rank": 23,
       "last_rank": 23
@@ -630,7 +630,7 @@
       "entry": 4566337,
       "entry_name": "NCCC all stars",
       "player_name": "Scott Grouten",
-      "total": 1605,
+      "total": 1619,
       "event_total": 49,
       "rank": 24,
       "last_rank": 24
@@ -1456,7 +1456,7 @@
         "net": 68,
         "transfers": 0,
         "rank": 331563,
-        "overall_rank": 264702
+        "overall_rank": 264703
       }
     },
     "176770": {
@@ -1730,7 +1730,7 @@
         "net": 47,
         "transfers": 1,
         "rank": 3176035,
-        "overall_rank": 232820
+        "overall_rank": 232821
       }
     },
     "5711505": {
@@ -2004,7 +2004,7 @@
         "net": 36,
         "transfers": 0,
         "rank": 5964827,
-        "overall_rank": 727334
+        "overall_rank": 727336
       }
     },
     "2495071": {
@@ -3648,7 +3648,7 @@
         "net": 66,
         "transfers": 0,
         "rank": 440380,
-        "overall_rank": 549889
+        "overall_rank": 549892
       }
     },
     "2913554": {
@@ -3922,7 +3922,7 @@
         "net": 58,
         "transfers": 0,
         "rank": 1185939,
-        "overall_rank": 428421
+        "overall_rank": 428423
       }
     },
     "3438785": {
@@ -4196,7 +4196,7 @@
         "net": 37,
         "transfers": 0,
         "rank": 5651480,
-        "overall_rank": 2067168
+        "overall_rank": 2067175
       }
     },
     "4348759": {
@@ -4470,7 +4470,7 @@
         "net": 69,
         "transfers": 5,
         "rank": 328955,
-        "overall_rank": 875414
+        "overall_rank": 875416
       }
     },
     "3709440": {
@@ -4744,7 +4744,7 @@
         "net": 55,
         "transfers": 0,
         "rank": 1602516,
-        "overall_rank": 1060982
+        "overall_rank": 1060985
       }
     },
     "3414058": {
@@ -5018,7 +5018,7 @@
         "net": 59,
         "transfers": 0,
         "rank": 1051813,
-        "overall_rank": 1099149
+        "overall_rank": 1099152
       }
     },
     "1031462": {
@@ -5292,7 +5292,7 @@
         "net": 56,
         "transfers": 0,
         "rank": 1463292,
-        "overall_rank": 1472215
+        "overall_rank": 1472219
       }
     },
     "3697422": {
@@ -5566,7 +5566,7 @@
         "net": 33,
         "transfers": 0,
         "rank": 6946720,
-        "overall_rank": 2319962
+        "overall_rank": 2319969
       }
     },
     "4460696": {
@@ -5840,7 +5840,7 @@
         "net": 37,
         "transfers": 2,
         "rank": 5929331,
-        "overall_rank": 3556283
+        "overall_rank": 3556287
       }
     },
     "2433982": {
@@ -6114,7 +6114,7 @@
         "net": 42,
         "transfers": 2,
         "rank": 4430853,
-        "overall_rank": 2874629
+        "overall_rank": 2874633
       }
     },
     "1470046": {
@@ -6388,7 +6388,7 @@
         "net": 49,
         "transfers": 0,
         "rank": 2614362,
-        "overall_rank": 3774687
+        "overall_rank": 3774691
       }
     },
     "1318177": {
@@ -6662,7 +6662,7 @@
         "net": 27,
         "transfers": 0,
         "rank": 8981735,
-        "overall_rank": 4963642
+        "overall_rank": 4963645
       }
     },
     "4566337": {
@@ -6936,7 +6936,7 @@
         "net": 49,
         "transfers": 0,
         "rank": 2614362,
-        "overall_rank": 7263700
+        "overall_rank": 7263709
       }
     },
     "3597783": {
@@ -7210,7 +7210,7 @@
         "net": 30,
         "transfers": 0,
         "rank": 7964634,
-        "overall_rank": 7093644
+        "overall_rank": 7093650
       }
     }
   },
@@ -7347,11 +7347,11 @@
     },
     "33": {
       "224773": 1,
-      "176123": 2,
-      "2495071": 3,
+      "2495071": 2,
+      "176123": 3,
       "4350665": 4,
-      "1284138": 5,
-      "85174": 6,
+      "85174": 5,
+      "1284138": 6,
       "176770": 7,
       "3043654": 8,
       "1547046": 9,
