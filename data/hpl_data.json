@@ -1,6 +1,6 @@
 {
   "league_id": 32567,
-  "fetched_at": "2026-05-02T17:45:41.432980+00:00",
+  "fetched_at": "2026-05-02T19:50:22.305840+00:00",
   "synced_gws": [
     1,
     2,
@@ -385,8 +385,8 @@
       "confirmed": false,
       "is_current": true,
       "is_next": false,
-      "average_score": 1,
-      "highest_score": 59
+      "average_score": 17,
+      "highest_score": 87
     },
     {
       "id": 36,
@@ -425,7 +425,7 @@
       "entry_name": "Maguerrrrrrrroooo",
       "player_name": "Austin Magaro",
       "total": 2109,
-      "event_total": 9,
+      "event_total": 18,
       "rank": 1,
       "last_rank": 1
     },
@@ -443,7 +443,7 @@
       "entry_name": "Gyok Tuah",
       "player_name": "Ben Cadwallader",
       "total": 2083,
-      "event_total": 10,
+      "event_total": 18,
       "rank": 3,
       "last_rank": 4
     },
@@ -452,7 +452,7 @@
       "entry_name": "Dele Lalli",
       "player_name": "Michael Lally",
       "total": 2083,
-      "event_total": 3,
+      "event_total": 24,
       "rank": 4,
       "last_rank": 2
     },
@@ -470,7 +470,7 @@
       "entry_name": "TopGunners",
       "player_name": "Brian Gilbert",
       "total": 2055,
-      "event_total": 4,
+      "event_total": 10,
       "rank": 6,
       "last_rank": 6
     },
@@ -479,7 +479,7 @@
       "entry_name": "El Bee FC",
       "player_name": "Andrew Peterson",
       "total": 2038,
-      "event_total": 8,
+      "event_total": 33,
       "rank": 7,
       "last_rank": 7
     },
@@ -488,7 +488,7 @@
       "entry_name": "BASTOURS",
       "player_name": "Michael Hany",
       "total": 2026,
-      "event_total": 2,
+      "event_total": 31,
       "rank": 8,
       "last_rank": 8
     },
@@ -506,7 +506,7 @@
       "entry_name": "Mainstreeters",
       "player_name": "Bryan Straz",
       "total": 2006,
-      "event_total": 9,
+      "event_total": 17,
       "rank": 10,
       "last_rank": 10
     },
@@ -515,7 +515,7 @@
       "entry_name": "Palm Tree",
       "player_name": "Hany Nakhla",
       "total": 1989,
-      "event_total": 7,
+      "event_total": 27,
       "rank": 11,
       "last_rank": 11
     },
@@ -524,7 +524,7 @@
       "entry_name": "The Wirtz",
       "player_name": "Joe Bulak",
       "total": 1962,
-      "event_total": 0,
+      "event_total": 18,
       "rank": 12,
       "last_rank": 12
     },
@@ -533,7 +533,7 @@
       "entry_name": "FullKitWnkr",
       "player_name": "Cory Riccio",
       "total": 1949,
-      "event_total": 0,
+      "event_total": 30,
       "rank": 13,
       "last_rank": 13
     },
@@ -542,7 +542,7 @@
       "entry_name": "Raymond Gapist FC",
       "player_name": "Tyler Cleverdon",
       "total": 1933,
-      "event_total": 0,
+      "event_total": 16,
       "rank": 14,
       "last_rank": 14
     },
@@ -551,7 +551,7 @@
       "entry_name": "Guiu Pride",
       "player_name": "Joe Futtner",
       "total": 1926,
-      "event_total": 0,
+      "event_total": 15,
       "rank": 15,
       "last_rank": 15
     },
@@ -560,7 +560,7 @@
       "entry_name": "Ryan's Reds",
       "player_name": "Ryan Cleverdon",
       "total": 1905,
-      "event_total": 2,
+      "event_total": 9,
       "rank": 16,
       "last_rank": 16
     },
@@ -569,7 +569,7 @@
       "entry_name": "Szaf Bet",
       "player_name": "Mark Szafir",
       "total": 1867,
-      "event_total": 0,
+      "event_total": 8,
       "rank": 17,
       "last_rank": 17
     },
@@ -578,7 +578,7 @@
       "entry_name": "HogWirtz",
       "player_name": "Paul Szafir",
       "total": 1853,
-      "event_total": 0,
+      "event_total": 21,
       "rank": 18,
       "last_rank": 18
     },
@@ -587,7 +587,7 @@
       "entry_name": "Saratoga Stallions",
       "player_name": "John Perron",
       "total": 1837,
-      "event_total": 12,
+      "event_total": 35,
       "rank": 19,
       "last_rank": 19
     },
@@ -596,7 +596,7 @@
       "entry_name": "Slot in the Dark",
       "player_name": "Jim Honda",
       "total": 1792,
-      "event_total": 0,
+      "event_total": 15,
       "rank": 20,
       "last_rank": 20
     },
@@ -605,7 +605,7 @@
       "entry_name": "South Shore SC",
       "player_name": "Benjamin Kamlet",
       "total": 1784,
-      "event_total": 2,
+      "event_total": 21,
       "rank": 21,
       "last_rank": 21
     },
@@ -614,7 +614,7 @@
       "entry_name": "Grand Case FC",
       "player_name": "Aaron Thayer",
       "total": 1735,
-      "event_total": 7,
+      "event_total": 33,
       "rank": 22,
       "last_rank": 22
     },
@@ -623,7 +623,7 @@
       "entry_name": "Return of the Djedi",
       "player_name": "Michael Baird",
       "total": 1628,
-      "event_total": 0,
+      "event_total": 6,
       "rank": 23,
       "last_rank": 23
     },
@@ -632,7 +632,7 @@
       "entry_name": "NCCC all stars",
       "player_name": "Scott Grouten",
       "total": 1619,
-      "event_total": 0,
+      "event_total": 35,
       "rank": 24,
       "last_rank": 24
     }
