@@ -1,6 +1,6 @@
 {
   "league_id": 32567,
-  "fetched_at": "2026-05-02T21:23:45.817459+00:00",
+  "fetched_at": "2026-05-02T22:04:43.251078+00:00",
   "synced_gws": [
     1,
     2,
@@ -386,7 +386,7 @@
       "is_current": true,
       "is_next": false,
       "average_score": 17,
-      "highest_score": 87
+      "highest_score": 104
     },
     {
       "id": 36,
@@ -434,7 +434,7 @@
       "entry_name": "Dele Lalli",
       "player_name": "Michael Lally",
       "total": 2104,
-      "event_total": 24,
+      "event_total": 25,
       "rank": 2,
       "last_rank": 2
     },
@@ -488,7 +488,7 @@
       "entry_name": "BASTOURS",
       "player_name": "Michael Hany",
       "total": 2055,
-      "event_total": 31,
+      "event_total": 34,
       "rank": 8,
       "last_rank": 8
     },
@@ -578,7 +578,7 @@
       "entry_name": "HogWirtz",
       "player_name": "Paul Szafir",
       "total": 1874,
-      "event_total": 21,
+      "event_total": 22,
       "rank": 18,
       "last_rank": 18
     },
@@ -596,7 +596,7 @@
       "entry_name": "Slot in the Dark",
       "player_name": "Jim Honda",
       "total": 1807,
-      "event_total": 15,
+      "event_total": 16,
       "rank": 20,
       "last_rank": 20
     },
@@ -614,7 +614,7 @@
       "entry_name": "Grand Case FC",
       "player_name": "Aaron Thayer",
       "total": 1761,
-      "event_total": 33,
+      "event_total": 35,
       "rank": 22,
       "last_rank": 22
     },
@@ -623,7 +623,7 @@
       "entry_name": "NCCC all stars",
       "player_name": "Scott Grouten",
       "total": 1654,
-      "event_total": 35,
+      "event_total": 40,
       "rank": 23,
       "last_rank": 24
     },
