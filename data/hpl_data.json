@@ -1,6 +1,6 @@
 {
   "league_id": 32567,
-  "fetched_at": "2026-05-19T01:48:03.401909+00:00",
+  "fetched_at": "2026-05-19T06:01:33.248998+00:00",
   "synced_gws": [
     1,
     2,
@@ -426,7 +426,7 @@
       "entry": 224773,
       "entry_name": "Maguerrrrrrrroooo",
       "player_name": "Austin Magaro",
-      "total": 2282,
+      "total": 2286,
       "event_total": 49,
       "rank": 1,
       "last_rank": 1
@@ -435,7 +435,7 @@
       "entry": 2495071,
       "entry_name": "Dele Lalli",
       "player_name": "Michael Lally",
-      "total": 2266,
+      "total": 2272,
       "event_total": 49,
       "rank": 2,
       "last_rank": 2
@@ -444,7 +444,7 @@
       "entry": 176123,
       "entry_name": "The Blues",
       "player_name": "Mark Cleverdon",
-      "total": 2254,
+      "total": 2258,
       "event_total": 44,
       "rank": 3,
       "last_rank": 3
@@ -453,7 +453,7 @@
       "entry": 4350665,
       "entry_name": "Gyok Tuah",
       "player_name": "Ben Cadwallader",
-      "total": 2248,
+      "total": 2252,
       "event_total": 50,
       "rank": 4,
       "last_rank": 4
@@ -462,28 +462,28 @@
       "entry": 85174,
       "entry_name": "FC Perroncel",
       "player_name": "James Fulton",
-      "total": 2240,
+      "total": 2244,
       "event_total": 61,
       "rank": 5,
       "last_rank": 6
     },
     {
-      "entry": 1284138,
-      "entry_name": "TopGunners",
-      "player_name": "Brian Gilbert",
-      "total": 2234,
-      "event_total": 42,
-      "rank": 6,
-      "last_rank": 5
-    },
-    {
       "entry": 176770,
       "entry_name": "El Bee FC",
       "player_name": "Andrew Peterson",
-      "total": 2233,
+      "total": 2237,
       "event_total": 55,
-      "rank": 7,
+      "rank": 6,
       "last_rank": 7
+    },
+    {
+      "entry": 1284138,
+      "entry_name": "TopGunners",
+      "player_name": "Brian Gilbert",
+      "total": 2236,
+      "event_total": 42,
+      "rank": 7,
+      "last_rank": 5
     },
     {
       "entry": 3043654,
@@ -498,7 +498,7 @@
       "entry": 1547046,
       "entry_name": "WeHa FC",
       "player_name": "Matthew Lombardi",
-      "total": 2179,
+      "total": 2181,
       "event_total": 44,
       "rank": 9,
       "last_rank": 9
@@ -525,7 +525,7 @@
       "entry": 4348759,
       "entry_name": "FullKitWnkr",
       "player_name": "Cory Riccio",
-      "total": 2156,
+      "total": 2158,
       "event_total": 85,
       "rank": 12,
       "last_rank": 13
@@ -534,7 +534,7 @@
       "entry": 5711505,
       "entry_name": "The Wirtz",
       "player_name": "Joe Bulak",
-      "total": 2115,
+      "total": 2117,
       "event_total": 42,
       "rank": 13,
       "last_rank": 12
@@ -570,7 +570,7 @@
       "entry": 3438785,
       "entry_name": "Szaf Bet",
       "player_name": "Mark Szafir",
-      "total": 2040,
+      "total": 2044,
       "event_total": 63,
       "rank": 17,
       "last_rank": 18
@@ -606,7 +606,7 @@
       "entry": 1318177,
       "entry_name": "Grand Case FC",
       "player_name": "Aaron Thayer",
-      "total": 1938,
+      "total": 1940,
       "event_total": 48,
       "rank": 21,
       "last_rank": 22
@@ -8008,8 +8008,8 @@
       "176123": 3,
       "4350665": 4,
       "85174": 5,
-      "1284138": 6,
-      "176770": 7,
+      "176770": 6,
+      "1284138": 7,
       "3043654": 8,
       "1547046": 9,
       "1061944": 10,
